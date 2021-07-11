@@ -1,7 +1,7 @@
 # Titanic-Train-Analysis
 Data Analysis for the Titanic Train dataset
 
-## Description of the Variables in the titanic Dataset is as follows
+#### Description of the Variables in the titanic Dataset is as follows
 
 Passengerid- Serial number
 
@@ -11,7 +11,7 @@ pclass- Ticket class, its in 3 levels i.e **1,2 and 3**
 
 Name- Name of passenger
 
-Sex-- Gender of passenger , Male or Female.
+Sex-- Gender of passenger , **Male** or **Female**
 
 Age- Age in years of the 
 
