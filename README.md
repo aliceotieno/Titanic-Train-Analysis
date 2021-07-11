@@ -1,7 +1,11 @@
 # Titanic-Train-Analysis
 Data Analysis for the Titanic Train dataset
 
-#### Description of the Variables in the titanic Dataset is as follows
+RMS Titanic was a British passenger liner operated by the White Star Line that sank in the North Atlantic Ocean on 15 April 1912, after striking an iceberg during her maiden voyage from Southampton to New York City. 
+
+Out of curiosity , i downloaded online this dataset, containing data collected about this tragic incident. I did some analysis on it, to answer afew questions and get some insight.
+
+### Description of the Variables in the titanic Dataset is as follows
 
 Passengerid- Serial number
 
