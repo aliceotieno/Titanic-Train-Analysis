@@ -1,0 +1,170 @@
+---
+title: "Analysis of the Titanic Train dataset"
+author: "Alice Otieno"
+date: "7/11/2021"
+output: html_document
+---
+
+### Import data
+```{r}
+train <- read.csv("C:/Users/tech/Desktop/train.csv")
+```
+
+
+
+### load the r packages that we'll need in our analysis
+```{r}
+library(tidyverse)
+library(scales)
+
+```
+
+
+
+### Get a glance at the data,the top 10 records and bottom 6 records
+```{r}
+head(train,10)
+tail(train) 
+```
+
+
+
+### See the variable names in the data set
+```{r}
+names(train)
+```
+
+
+### Structure of the data
+```{r}
+str(train)
+```
+
+
+### Summary statistics of the data set
+```{r}
+summary(train)
+```
+
+### Some variables in the data set are considered numeric and some as character but they are factors so we change the datatypes
+```{r}
+train$Survived <-as.factor(train$Survived)  
+train$Pclass <-as.factor(train$Pclass)
+train$Sex<-as.factor(train$Sex)
+train$Embarked<-as.factor(train$Embarked)
+str(train)
+```
+
+
+
+## Analysis and Visualization
+
+This is the art of turning data into insight that can be easily interpreted as insight.
+we'll check for survival patterns and check for factors that affected the same
+
+
+### what was the survival rate?
+We use a simple bar graph to demonstrate the survival rate
+0 represents the passengers that did not survive, and 1 represents those that did survive. 
+
+```{r}
+ggplot(train,aes(x=Survived,fill=Survived))+geom_bar()
+```
+```{r}
+prop.table(table(train$Survived))
+```
+From our bar graph we see that ~550 passengers did not survive, which is roughly 61% of the total, and ~340 (38%) survived
+
+
+
+
+### Survival rate basis Gender
+it is believed that in case of a rescue operation during disasters, women's safety is prioritized.Did the same happen?
+
+```{r}
+ggplot(train,aes(x=Sex,fill=Survived))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="Number of passengers",
+  title="Survival Rate by Gender")
+
+```
+
+```{r}
+prop.table(table(train$Survived,train$Sex))
+```
+The survival rate amongst women was significantly higher,compare to men.
+
+
+
+
+
+### Survival rate basis class of tickets(Pclass)
+There are 3levels of the ticket class,namely 1,2 and 3.
+
+I presume the passengers in the pclass 1 were given first priority, is it the case?
+
+```{r}
+ggplot(train,aes(x=Pclass,fill=Survived))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="Number of passengers",
+       title="Survival Rate basis Passenger Class")
+```
+
+We notice that over 50%of passengers used the 3rd class
+
+About 77% of passengers in 1st class survived,about 44-50%from 2nd class and less than 25%in the 3rd class survived.
+
+
+
+
+### Survival rate basis class of tickets(Pclass) and Gender
+
+```{r}
+ggplot(train,aes(x=Sex,fill=Survived))+
+  theme_bw()+
+  geom_bar()+
+  labs(y="Number of Passengers",title="Titanic Survival Rate by Gender by Passenger class")+
+  facet_wrap(~Pclass)
+```
+We can say that females were given first priority in the rescue plan. Number of female survivors was higher than male in all three passenger ticket classes.
+
+
+
+
+### Survival rate basis age
+
+We would want to know the impact of passenger's Age on survival rate
+
+```{r}
+ggplot(train,aes(x=Age, fill=Survived))+
+    theme_bw()+
+    geom_histogram(binwidth = 5)+
+    labs(y="Number of passengers",x="Age", title = "survival rates basis Age")
+
+
+```
+looking at the age <10 years section in the graph,we see that the survival rate is low and drops above the age of 45.
+
+
+
+### Survival rate basis Age ,Gender and Class of tickets
+
+We also identify the survival pattern considering all the three variables
+
+```{r}
+ggplot(train,aes(x=Age,fill=Survived))+
+  theme_bw()+
+  facet_wrap(Pclass~Sex)+
+  geom_histogram(bnwidth=5)+
+  labs(y="survived",x="Age")
+```
+I
+It is evident that the survival rate of children,across 1st and 2nd class was the highest.
+
+Except for 1 girl child all children travelling 1st and 2nd class survived.
+
+The survival rates were lowest for men traveling 3rd class.
+
+**The End**
