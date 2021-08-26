@@ -11,7 +11,6 @@ train <- read.csv("C:/Users/tech/Desktop/train.csv")
 ```
 
 
-
 ### load the r packages that we'll need in our analysis
 ```{r}
 library(tidyverse)
@@ -19,15 +18,11 @@ library(scales)
 
 ```
 
-
-
 ### Get a glance at the data,the top 10 records and bottom 6 records
 ```{r}
 head(train,10)
 tail(train) 
 ```
-
-
 
 ### See the variable names in the data set
 ```{r}
@@ -76,8 +71,6 @@ prop.table(table(train$Survived))
 From our bar graph we see that ~550 passengers did not survive, which is roughly 61% of the total, and ~340 (38%) survived
 
 
-
-
 ### Survival rate basis Gender
 it is believed that in case of a rescue operation during disasters, women's safety is prioritized.Did the same happen?
 
@@ -94,8 +87,6 @@ ggplot(train,aes(x=Sex,fill=Survived))+
 prop.table(table(train$Survived,train$Sex))
 ```
 The survival rate amongst women was significantly higher,compare to men.
-
-
 
 
 
